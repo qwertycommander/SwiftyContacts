@@ -456,7 +456,7 @@ public func makeCall(CNPhoneNumber: CNPhoneNumber) {
 /// Check if iOS Device supports phone calls
 /// - parameter completionHandler: Returns Bool.
 public func isCapableToCall(completionHandler: @escaping (_ result: Bool) -> ()) {
-    if UIApplication.shared.canOpenURL(NSURL(string: "tel://")! as URL) {
+    /*if UIApplication.shared.canOpenURL(NSURL(string: "tel://")! as URL) {
         // Check if iOS Device supports phone calls
         // User will get an alert error when they will try to make a phone call in airplane mode
         if let mnc: String = CTTelephonyNetworkInfo().subscriberCellularProvider?.mobileNetworkCode, !mnc.isEmpty {
@@ -469,18 +469,26 @@ public func isCapableToCall(completionHandler: @escaping (_ result: Bool) -> ())
     } else {
         // iOS Device is not capable for making calls
         completionHandler(false)
-    }
+    }*/
+
+    // For imessage extension
+
+    completionHandler(false)
     
 }
 
 /// Check if iOS Device supports sms
 /// - parameter completionHandler: Returns Bool.
 public func isCapableToSMS(completionHandler: @escaping (_ result: Bool) -> ()) {
-    if UIApplication.shared.canOpenURL(NSURL(string: "sms:")! as URL) {
+    /* if UIApplication.shared.canOpenURL(NSURL(string: "sms:")! as URL) {
         completionHandler(true)
     } else {
         completionHandler(false)
-    }
+    }*/
+    
+    // For imessage extension
+
+    completionHandler(false)
     
 }
 
@@ -496,18 +504,18 @@ public func CNPhoneNumberToString(CNPhoneNumber: CNPhoneNumber) -> String {
 /// Make call to given number.
 /// - parameter CNPhoneNumber: Phone number.
 public func makeCall(CNPhoneNumber: CNPhoneNumber) {
-    if let phoneNumber: String = CNPhoneNumber.value(forKey: "digits") as? String {
-        guard let url: URL = URL(string: "tel://" + "\(phoneNumber)") else {
-            print("Error in Making Call")
-            return
-        }
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            // Fallback on earlier versions
-            UIApplication.shared.openURL(url)
-        }
-    }
+    // if let phoneNumber: String = CNPhoneNumber.value(forKey: "digits") as? String {
+    //     guard let url: URL = URL(string: "tel://" + "\(phoneNumber)") else {
+    //         print("Error in Making Call")
+    //         return
+    //     }
+    //     if #available(iOS 10.0, *) {
+    //         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    //     } else {
+    //         // Fallback on earlier versions
+    //         UIApplication.shared.openURL(url)
+    //     }
+    // }
 }
 
 #endif
